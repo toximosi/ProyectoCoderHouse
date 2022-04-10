@@ -15,13 +15,13 @@ Including another URLconf
 """
 #importaciones ---------------------------------
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 #imporracion de vistas-------------
-from ProyectoIvan.views import saludo
 
 #code ------------------------------------------
 urlpatterns = [
     path('admin/', admin.site.urls),
     #vistas-------------------------------------
-    path('saludo/', saludo),
+    path('App/', include('App.urls'))
+
 ]
