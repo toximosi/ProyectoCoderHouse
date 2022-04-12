@@ -24,8 +24,8 @@ def profesores(request):
 def profesoresFormulario(request):
     return render(request, 'profesoresFormulario.html')
 
-def estudiantes(request):
-    return render(request, 'estudiantes.html')
+""" def estudiantes(request):
+    return render(request, 'estudiantes.html') """
 
 def entregables(request):
     return render(request, 'entregables.html')
@@ -108,10 +108,12 @@ def estudiantesBuscador(request):
 
     return render(request, "estudiantesBuscador.html",)
 
-def estudiantesTodos(request):
-    estudianteLista = Estudiantes.objects
-    return render(request, estudianteLista)
+def estudiantes(request):
+    estudianteLista = Estudiantes.objects.all()
+    return render(request, "estudiantes.html", {"estudiantes":estudianteLista})
 
+""" def estudiantes(request):
+    return render(request, 'estudiantes.html') """
 
 
 
