@@ -2,8 +2,8 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
 from django.template import Template, Context
 from django.template import loader
-from App.forms import CursoFormulario, EstudiantesFormulario, ProfesoresFormulario, EntregablesFormulario
-from App.models import Cursos, Estudiantes, Profesores, Entregables
+from App.forms import CursoFormulario, EstudiantesFormulario, ProfesoresFormulario
+from App.models import Cursos, Estudiantes, Profesores
 
 # Create your views here.
 
@@ -15,90 +15,13 @@ def parent(request):
 def inicio(request):
     return render(request, 'inicio.html')
 
-
-
 def profesores(request):
     profesorLista = Profesores.objects.all()
     return render(request, 'profesores.html', {"profesores":profesorLista})
 
-def profesoresFormulario(request):
-    return render(request, 'profesoresFormulario.html')
-
-""" def estudiantes(request):
-    return render(request, 'estudiantes.html') """
-
-def entregables(request):
-    return render(request, 'entregables.html')
-
-def entregablesFormulario(request):
-    return render(request, 'entregablesFormulario.html')
-
-#Formulario------------------
-
-
-def estudiantesFormulario(request):
-    if request.method == 'POST':
-        miFormulario = EstudiantesFormulario(request.POST)
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            estudiante = Estudiantes(nombre=informacion['nombre'], apellido = informacion['apellido'], curso = informacion['curso'])
-            estudiante.save()
-            return render(request,"estudiantes.html")
-    else:
-        miFormulario = EstudiantesFormulario()
-    return render(request,"estudiantesFormulario.html", {"miFormulario":miFormulario})
-
-def profesoresFormulario(request):
-    if request.method == 'POST':
-        miFormulario = ProfesoresFormulario(request.POST)
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            estudiante = profesores(nombre=informacion['nombre'], apellido = informacion['apellido'], curso = informacion['curso'])
-            estudiante.save()
-            return render(request,"profesores.html")
-    else:
-        miFormulario = profesoresFormulario()
-    return render(request,"profesoresFormulario.html", {"miFormulario":miFormulario})
-
-
-
-""" def estudiantesBuscador(request):
-
-    respuesta = f"Estoy buscando el estudiante nro: {request.GET['nombre']}"
-    return HttpResponse(respuesta) """
-#bien----------------------------------------------------------INICIO
-def estudiantesBuscador(request):
-        return render(request, "estudiantesBuscador.html")
-
-""" def buscar(request):
-
-    respuesta = f"Estoy buscando el estudiante nro: {request.GET['nombre']}"
-    return HttpResponse(respuesta) """
-#bien----------------------------------------------------------FIN
-#Cursos----------------------------------------------------------
 def cursos(request):
     cursosLista = Cursos.objects.all()
     return render(request, 'cursos.html', {"cursos":cursosLista})
-
-def cursosFormulario(request):
-    if request.method == 'POST':
-        miFormulario = CursoFormulario(request.POST)
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            curso = Cursos(nombre=informacion['nombre'], fechaDeInicio = informacion['fechaInicio'])
-            curso.save()
-            return render(request,"cursos.html")
-    else:
-        miFormulario = CursoFormulario()
-    return render(request,"cursoFormulario.html", {"miFormulario":miFormulario})
-
-
 
 #Estudiante----------------------------------------------------------
 def estudiantes(request):
@@ -116,3 +39,17 @@ def buscarEstudiantes(request):
 
 def estudiantesBuscador(request):
     return render(request, "estudiantesBuscador.html",)
+
+def estudiantesFormulario(request):
+    if request.method == 'POST':
+        miFormulario = EstudiantesFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            estudiante = Estudiantes(nombre=informacion['nombre'], apellido = informacion['apellido'], curso = informacion['curso'])
+            estudiante.save()
+            return render(request,"estudiantes.html")
+    else:
+        miFormulario = EstudiantesFormulario()
+    return render(request,"estudiantesFormulario.html", {"miFormulario":miFormulario})
