@@ -15,11 +15,11 @@ def parent(request):
 def inicio(request):
     return render(request, 'inicio.html')
 
-def cursos(request):
-    return render(request, 'cursos.html')
+
 
 def profesores(request):
-    return render(request, 'profesores.html')
+    profesorLista = Profesores.objects.all()
+    return render(request, 'profesores.html', {"profesores":profesorLista})
 
 def profesoresFormulario(request):
     return render(request, 'profesoresFormulario.html')
@@ -34,19 +34,7 @@ def entregablesFormulario(request):
     return render(request, 'entregablesFormulario.html')
 
 #Formulario------------------
-def cursosFormulario(request):
-    if request.method == 'POST':
-        miFormulario = CursoFormulario(request.POST)
-        print(miFormulario)
 
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            curso = Cursos(nombre=informacion['nombre'], fechaDeInicio = informacion['fechaInicio'])
-            curso.save()
-            return render(request,"cursos.html")
-    else:
-        miFormulario = CursoFormulario()
-    return render(request,"cursoFormulario.html", {"miFormulario":miFormulario})
 
 def estudiantesFormulario(request):
     if request.method == 'POST':
@@ -91,43 +79,40 @@ def estudiantesBuscador(request):
     respuesta = f"Estoy buscando el estudiante nro: {request.GET['nombre']}"
     return HttpResponse(respuesta) """
 #bien----------------------------------------------------------FIN
+#Cursos----------------------------------------------------------
+def cursos(request):
+    cursosLista = Cursos.objects.all()
+    return render(request, 'cursos.html', {"cursos":cursosLista})
 
-def buscar(request):
+def cursosFormulario(request):
+    if request.method == 'POST':
+        miFormulario = CursoFormulario(request.POST)
+        print(miFormulario)
 
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            curso = Cursos(nombre=informacion['nombre'], fechaDeInicio = informacion['fechaInicio'])
+            curso.save()
+            return render(request,"cursos.html")
+    else:
+        miFormulario = CursoFormulario()
+    return render(request,"cursoFormulario.html", {"miFormulario":miFormulario})
+
+
+
+#Estudiante----------------------------------------------------------
+def estudiantes(request):
+    estudianteLista = Estudiantes.objects.all()
+    return render(request, "estudiantes.html", {"estudiantes":estudianteLista})
+
+def buscarEstudiantes(request):
     if request.GET["fname"]:
         nombre =request.GET['fname']
         estudiantes = Estudiantes.objects.filter(nombre__icontains=nombre)
         return render(request, "estudiantesResultado.html", {"estudiantes":estudiantes, "query":nombre })
     else:
         respuesta = "No enviaste datos"
-
     return HttpResponse(respuesta)
 
-
 def estudiantesBuscador(request):
-
     return render(request, "estudiantesBuscador.html",)
-
-def estudiantes(request):
-    estudianteLista = Estudiantes.objects.all()
-    return render(request, "estudiantes.html", {"estudiantes":estudianteLista})
-
-""" def estudiantes(request):
-    return render(request, 'estudiantes.html') """
-
-
-
-
-
-
-""" def estudiantesBuscador(request):
-    if request.GET['nombre']:
-        nombre = request.GET['nombre']
-        print(nombre)
-        estudiantes = Estudiantes.objects.filter(nombre__icontains = nombre)
-        print(estudiantes)
-        return render(request, "App/estudiantesBuscador.html", {"nombre":estudiantes.nombre, "apellido":estudiantes.apellido, "curso":estudiantes.curso})
-    else:
-        respuesta = "No enviaste datos"
-
-    return render(request, "App/estudiantesBuscador.html", {"respuesta":respuesta}) """

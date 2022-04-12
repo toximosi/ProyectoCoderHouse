@@ -1,8 +1,26 @@
-{% extends "parent.html" %}
-{% load static %}
-{% block contenidoQueCambia %}
-<div class="container"><div class="row">
+{% extends "parent.html" %} {% load static %} {% block contenidoQueCambia %}
+<div class="container">
+  <div class="row">
     <div class="col-lg-12">
-<h1>cursos</h1>
-</div></div></div>
+      <h1>🤗 Estos son los cursos que tenemos preparados</h1>
+
+      <table class="table-warning">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de inicio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for curso in cursos %}
+          <tr>
+            <td>{{curso.nombre}}   </td>
+            <td>{{curso.fechaInicio}}   </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock %}

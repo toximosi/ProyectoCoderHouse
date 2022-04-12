@@ -1,39 +1,49 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'inicio' %}">Inicio</a>
-        </li>
-        {% comment %} <li class="nav-item">
-          <a class="nav-link" href="{% url 'profesores' %}">Profesores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'profesoresFormulario' %}">Profesores Formulario</a>
-        </li> {% endcomment %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'cursos' %}">Cursos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'cursosFormulario' %}">Cursos Formulario</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'estudiantes' %}">Estudiantes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'estudiantesBuscador' %}">Estudiantes Buscador</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'estudiantesformulario' %}">Estudiantes Formulario</a>
-          </li>
-         {% comment %}  <li class="nav-item">
-            <a class="nav-link" href="{% url 'entregables' %}">Entregables</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'entregablesFormulario' %}">Entregables Formulario</a>
-          </li> {% endcomment %}
-          <li class="nav-item">
-            <a class="nav-link" href="#signuo">Inicio</a>
-          </li>
-      </ul>
-    </div>
-  </nav>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'inicio' %}">Inicio</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profesores' %}">Profesores</a>
+      </li>
+      {% comment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profesoresFormulario' %}"
+          >Profesores Formulario</a
+        >
+      </li>
+      {% endcomment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cursos' %}">Cursos</a>
+      </li>
+      {% comment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cursosFormulario' %}"
+          >Cursos Formulario</a
+        >
+      </li>
+      {% endcomment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'estudiantes' %}">Estudiantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'estudiantesBuscador' %}">Estudiantes Buscador</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'estudiantesformulario' %}">Estudiantes Formulario</a>
+      </li>
+      {% comment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'entregables' %}">Entregables</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'entregablesFormulario' %}"
+          >Entregables Formulario</a
+        >
+      </li>
+      {% endcomment %}
+    </ul>
+  </div>
+</nav>
