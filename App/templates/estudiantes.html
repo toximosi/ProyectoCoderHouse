@@ -4,5 +4,15 @@
 <div class="container"><div class="row">
     <div class="col-lg-12">
 <h1>estudiantes</h1>
+
+
+
+<ul>
+    {% for estudiante in estudianteTodos %}
+    <li>{{estudiante.nombre}} {{apelllido.nombre}}</li>
+    <li>Estudiante de: {{estudiante.curso}}</li>
+    {% endfor %}
+</ul> 
+
 </div></div></div>
 {% endblock %}

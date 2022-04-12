@@ -76,15 +76,49 @@ def profesoresFormulario(request):
         miFormulario = profesoresFormulario()
     return render(request,"profesoresFormulario.html", {"miFormulario":miFormulario})
 
-def buscar(request):
 
-    respuesta = f"Estoy buscando el estudiante nro: {request.GET['estudiantes']}"
-    return HttpResponse(respuesta)
 
 """ def estudiantesBuscador(request):
-        return render(request, "estudiantesBuscador.html") """
+
+    respuesta = f"Estoy buscando el estudiante nro: {request.GET['nombre']}"
+    return HttpResponse(respuesta) """
+#bien----------------------------------------------------------INICIO
+def estudiantesBuscador(request):
+        return render(request, "estudiantesBuscador.html")
+
+""" def buscar(request):
+
+    respuesta = f"Estoy buscando el estudiante nro: {request.GET['nombre']}"
+    return HttpResponse(respuesta) """
+#bien----------------------------------------------------------FIN
+
+def buscar(request):
+
+    if request.GET["fname"]:
+        nombre =request.GET['fname']
+        estudiantes = Estudiantes.objects.filter(nombre__icontains=nombre)
+        return render(request, "estudiantesResultado.html", {"estudiantes":estudiantes, "query":nombre })
+    else:
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
+
 
 def estudiantesBuscador(request):
+
+    return render(request, "estudiantesBuscador.html",)
+
+def estudiantesTodos(request):
+    estudianteLista = Estudiantes.objects
+    return render(request, estudianteLista)
+
+
+
+
+
+
+
+""" def estudiantesBuscador(request):
     if request.GET['nombre']:
         nombre = request.GET['nombre']
         print(nombre)
@@ -94,4 +128,4 @@ def estudiantesBuscador(request):
     else:
         respuesta = "No enviaste datos"
 
-    return render(request, "estudiantesBuscador.html", {"respuesta":respuesta})
+    return render(request, "App/estudiantesBuscador.html", {"respuesta":respuesta}) """
